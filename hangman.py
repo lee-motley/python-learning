@@ -24,13 +24,13 @@ print(secretWordAnswers)
 
 ## number of guesses loop
 while livesRemaining > 0 and not gameOver:
-    print(f"You have {livesRemaining} lives")
-    guess = input("Guess a letter: ")
+
+    guess = input("Guess a letter: ").lower()
     matches = 0
 
     # letters in word loop
     for index, letter in enumerate(secretWordLetters):
-        if guess == letter :
+        if guess == letter:
             secretWordAnswers[index] = guess
             matches = matches + 1
 
@@ -38,7 +38,8 @@ while livesRemaining > 0 and not gameOver:
         livesRemaining = livesRemaining - 1
     
     print(secretWordAnswers)
-
+    print(f"You have {livesRemaining} lives remaining!")
+    print()
 
     missingLetters = 0
 
