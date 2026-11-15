@@ -53,6 +53,11 @@ while livesRemaining > 0 and not gameOver:
 
 
 
+
+    if livesRemaining == 0:
+        print("The secret word was " + secretWord)
+
+
     # _ _ p _ _ = secretWordAnswers
 
 
