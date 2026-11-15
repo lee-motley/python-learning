@@ -1,5 +1,6 @@
 import urllib.request
 import random
+import re
 
 def getSecretWord():
     baseWords = "https://raw.githubusercontent.com/lee-motley/python-learning/refs/heads/main/data/words.txt"
@@ -10,6 +11,15 @@ def getSecretWord():
 
     return random.choice(words)
 
+def enterLetter(message):
+    letter = input(message)
+
+    if re.fullmatch("[a-zA-Z]", letter):
+        return letter
+    else:
+        return enterLetter(message)
+
+
 
 secretWord = getSecretWord()
 secretWordLetters = list(secretWord)
@@ -17,7 +27,7 @@ secretWordAnswers = ["_"] * len(secretWord)
 guess = ""
 livesRemaining = 5
 gameOver = False
-
+guessedLetters = []
 
 print(secretWordAnswers)
 
@@ -25,7 +35,7 @@ print(secretWordAnswers)
 ## number of guesses loop
 while livesRemaining > 0 and not gameOver:
 
-    guess = input("Guess a letter: ").lower()
+    guess = enterLetter("Guess a letter: ").lower()
     matches = 0
 
     # letters in word loop
@@ -35,10 +45,14 @@ while livesRemaining > 0 and not gameOver:
             matches = matches + 1
 
     if matches == 0 :
+        guessedLetters.append(guess)
+        
         livesRemaining = livesRemaining - 1
     
     print(secretWordAnswers)
     print(f"You have {livesRemaining} lives remaining!")
+
+    print(f"You've already used {guessedLetters}")
     print()
 
     missingLetters = 0
