@@ -1,10 +1,17 @@
+import urllib.request
+import random
+
 def getSecretWord():
-    
+    baseWords = "https://raw.githubusercontent.com/lee-motley/python-learning/refs/heads/main/data/words.txt"
+    response = urllib.request.urlopen(baseWords)
+    data = response.read().decode("utf-8")
+    words = data.split(",")
+    # words = ["apple","banana","orange"]
+
+    return random.choice(words)
 
 
-
-
-secretWord = "apple"
+secretWord = getSecretWord()
 secretWordLetters = list(secretWord)
 secretWordAnswers = ["_"] * len(secretWord)
 guess = ""
