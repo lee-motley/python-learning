@@ -30,7 +30,7 @@ while livesRemaining > 0 and not gameOver:
 
     # letters in word loop
     for index, letter in enumerate(secretWordLetters):
-        if guess == letter:
+        if guess == letter.lower():
             secretWordAnswers[index] = guess
             matches = matches + 1
 
